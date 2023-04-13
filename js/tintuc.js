@@ -20,7 +20,7 @@ async function getData() {
 
     })
 
-    const listCatElement = $("#list-danhmuc");
+    const listCatElement = $("#list-cat");
 
     var listDanhMuc = await axios.get('http://localhost:3000/categories');
 
