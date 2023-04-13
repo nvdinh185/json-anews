@@ -1,6 +1,6 @@
-const ulElement = $("#list-news");
-
 async function getData() {
+    const ulElement = $("#list-news");
+
     var listNews = await axios.get('http://localhost:3000/news');
     listNews = listNews.data;
 
@@ -22,11 +22,11 @@ async function getData() {
 
     const listCatElement = $("#list-cat");
 
-    var listDanhMuc = await axios.get('http://localhost:3000/categories');
+    var listCat = await axios.get('http://localhost:3000/categories');
 
-    listDanhMuc = listDanhMuc.data;
+    listCat = listCat.data;
 
-    listDanhMuc.forEach(function (news) {
+    listCat.forEach(function (news) {
         const liElement = $('<li></li>');
         liElement.html(`
                 <a href="danhmuc.html?cid=${news.id}">${news.name}</a>
