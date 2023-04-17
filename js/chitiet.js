@@ -12,33 +12,37 @@ var dId = getParameterByName('did');
 async function getData() {
 
     const detailElement = $("#detail");
+    try {
+        var newsById = await axios.get(`http://localhost:3000/news/${dId}`);
 
-    var newsById = await axios.get(`http://localhost:3000/news/${dId}`);
+        newsById = newsById.data;
 
-    newsById = newsById.data;
-
-    detailElement.html(`
+        detailElement.html(`
             <h3>${newsById.description}</h3>
             <div class="main-content">
                 <p>${newsById.detail}</p>
             </div>
         `);
 
-    const listCatElement = $("#list-cat");
+        const listCatElement = $("#list-cat");
 
-    var listCat = await axios.get('http://localhost:3000/categories');
+        var listCat = await axios.get('http://localhost:3000/categories');
 
-    listCat = listCat.data;
+        listCat = listCat.data;
 
-    listCat.forEach(function (news) {
-        const liElement = $('<li></li>');
-        liElement.html(`
+        listCat.forEach(function (news) {
+            const liElement = $('<li></li>');
+            liElement.html(`
                 <a href="danhmuc.html?cid=${news.id}">${news.name}</a>
             `);
 
-        listCatElement.append(liElement);
+            listCatElement.append(liElement);
 
-    })
+        })
+    } catch (err) {
+        console.log('Lỗi ' + err);
+        detailElement.append(`<p style='color: red; font-style: italic;'>Xảy ra lỗi khi lấy dữ liệu!<p/>`);
+    }
 }
 
 getData();
