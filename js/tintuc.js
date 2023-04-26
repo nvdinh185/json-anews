@@ -2,7 +2,7 @@ async function getData() {
     const ulElement = $("#list-news");
 
     try {
-        var listNews = await axios.get('http://localhost:3000/news');
+        var listNews = await axios.get('http://localhost:3000/anews');
         listNews = listNews.data;
 
         listNews.forEach(function (news) {
@@ -23,7 +23,7 @@ async function getData() {
 
         const listCatElement = $("#list-cat");
 
-        var listCat = await axios.get('http://localhost:3000/categories');
+        var listCat = await axios.get('http://localhost:3000/acategories');
 
         listCat = listCat.data;
 
