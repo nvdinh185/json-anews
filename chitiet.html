@@ -10,6 +10,7 @@
 		$(document).ready(function () {
 			$("#header").load("./inc/header.html");
 			$("#menu").load("./inc/menu.html");
+			$(".content-left").load("./inc/sidebar.html");
 			$("#footer").load("./inc/footer.html");
 		});
 	</script>
@@ -27,10 +28,7 @@
 
 		<!-- begin content -->
 		<div id="content">
-			<div class="content-left fl">
-				<h3>Danh mục tin</h3>
-				<ul id="list-cat"></ul>
-			</div>
+			<div class="content-left fl"></div>
 			<div class="content-right fr" id="detail"></div>
 			<div class="clr"></div>
 		</div>
@@ -38,7 +36,6 @@
 
 		<div id="footer"></div>
 	</div>
-	<script src="lib/jquery-3.6.3.min.js"></script>
 	<script src="lib/axios.min.js"></script>
 	<script src="js/chitiet.js"></script>
 </body>

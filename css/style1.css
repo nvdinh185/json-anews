@@ -29,7 +29,7 @@ ul {
     height: 120px;
 }
 #content .content-left {
-    background: none repeat scroll 0 0 #58a808;
+    background: none repeat scroll 0 0 #4EA69A;
     width: 300px;
 }
 #content h3 {
@@ -63,7 +63,7 @@ ul {
     margin-top: 10px;
 }
 #menu {
-    background: none repeat scroll 0 0 #FC8010;
+    background: none repeat scroll 0 0 #990000;
     height: 30px;
     line-height: 30px;
     margin: 10px 0;
@@ -80,7 +80,7 @@ ul {
     background: none repeat scroll 0 0 #E5474D;
 }
 #footer {
-    background: none repeat scroll 0 0 #58a808;
+    background: none repeat scroll 0 0 #4EA69A;
     height: 40px;
     padding: 10px;
     text-align: center;
