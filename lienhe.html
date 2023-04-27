@@ -9,7 +9,6 @@
 	<script>
 		$(document).ready(function () {
 			$("#header").load("./inc/header.html");
-			$("#menu").load("./inc/menu.html");
 			$(".content-left").load("./inc/sidebar.html");
 			$("#footer").load("./inc/footer.html");
 		});
@@ -23,7 +22,14 @@
 		<!-- end header -->
 
 		<!-- begin menu -->
-		<div id="menu"></div>
+		<div id="menu">
+			<ul>
+				<li id="index"><a href="index.html" title="">Trang chủ</a></li>
+				<li id="news"><a href="tintuc.html" title="">Tin tức</a></li>
+				<li id="contact"><a href="lienhe.html" title="">Liên hệ</a></li>
+			</ul>
+			<div class="clr"></div>
+		</div>
 		<!-- end menu -->
 
 		<!-- begin content -->
@@ -75,6 +81,9 @@
 
 		<div id="footer"></div>
 	</div>
+	<script>
+		$("#contact").addClass('active');
+	</script>
 </body>
 
 </html>
