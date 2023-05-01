@@ -1,6 +1,6 @@
 async function getData() {
+    const listCatElement = $("#list-cat");
     try {
-        const listCatElement = $("#list-cat");
 
         var listCat = await axios.get('http://localhost:3000/acategories');
 
@@ -16,7 +16,8 @@ async function getData() {
 
         })
     } catch (error) {
-
+        console.log(error);
+        listCatElement.append(`<li style="color: red; font-style: italic;">Xảy ra lỗi ${error}</li>`);
     }
 }
 
