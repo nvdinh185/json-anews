@@ -1,24 +1,16 @@
-const sqlite3 = require('sqlite3').verbose();
-const dbFile = './database/news.db';
+const Category = require("../model/category.js");
 
 class CategoryController {
 
     // [GET] /cat
     async getListCats(req, res) {
         try {
-            var db = new sqlite3.Database(dbFile);
-            db.serialize();
-            const listNews = await new Promise((resolve, reject) => {
-                db.all(`SELECT * FROM category`, (err, row) => {
-                    if (err) reject(err);
-                    resolve(row);
-                })
-            })
-            res.status(200).json(listNews);
+            const listCats = await Category.find();
+            res.status(200).json(listCats);
         } catch (err) {
             res.status(500).json(err);
         } finally {
-            db.close();
+            // db.close();
         }
     }
 
@@ -26,19 +18,12 @@ class CategoryController {
     async getCatDetail(req, res) {
         var id = req.query.id;
         try {
-            var db = new sqlite3.Database(dbFile);
-            db.serialize();
-            const news = await new Promise((resolve, reject) => {
-                db.each(`SELECT * FROM category WHERE id = ${id}`, (err, row) => {
-                    if (err) reject(err);
-                    resolve(row);
-                })
-            })
-            res.status(200).json(news);
+            const catById = await Category.findOne({ id });
+            res.status(200).json(catById);
         } catch (err) {
             res.status(500).json(err);
         } finally {
-            db.close();
+            // db.close();
         }
     }
 }

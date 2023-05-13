@@ -1,24 +1,16 @@
-const sqlite3 = require('sqlite3').verbose();
-const dbFile = './database/news.db';
+const News = require("../model/news.js");
 
 class NewsController {
 
     // [GET] /news
     async getListNews(req, res) {
         try {
-            var db = new sqlite3.Database(dbFile);
-            db.serialize();
-            const listNews = await new Promise((resolve, reject) => {
-                db.all(`SELECT * FROM news`, (err, row) => {
-                    if (err) reject(err);
-                    resolve(row);
-                })
-            })
+            const listNews = await News.find();
             res.status(200).json(listNews);
         } catch (err) {
             res.status(500).json(err);
         } finally {
-            db.close();
+            // db.close();
         }
     }
 
@@ -26,19 +18,12 @@ class NewsController {
     async getListNewsByCat(req, res) {
         var catId = req.query.cid;
         try {
-            var db = new sqlite3.Database(dbFile);
-            db.serialize();
-            const listNews = await new Promise((resolve, reject) => {
-                db.all(`SELECT * FROM news WHERE cat_id = ${catId}`, (err, row) => {
-                    if (err) reject(err);
-                    resolve(row);
-                })
-            })
-            res.status(200).json(listNews);
+            const listNewsByCat = await News.find({ cat_id: catId });
+            res.status(200).json(listNewsByCat);
         } catch (err) {
             res.status(500).json(err);
         } finally {
-            db.close();
+            // db.close();
         }
     }
 
@@ -46,19 +31,12 @@ class NewsController {
     async getListNewsById(req, res) {
         var id = req.query.id;
         try {
-            var db = new sqlite3.Database(dbFile);
-            db.serialize();
-            const news = await new Promise((resolve, reject) => {
-                db.each(`SELECT * FROM news WHERE id = ${id}`, (err, row) => {
-                    if (err) reject(err);
-                    resolve(row);
-                })
-            })
-            res.status(200).json(news);
+            const newsById = await News.findOne({ id });
+            res.status(200).json(newsById);
         } catch (err) {
             res.status(500).json(err);
         } finally {
-            db.close();
+            // db.close();
         }
     }
 }
