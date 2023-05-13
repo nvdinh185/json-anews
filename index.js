@@ -30,7 +30,7 @@ const connect = async () => {
     }
 };
 
-mongoose.set("strictQuery", true);
+// mongoose.set("strictQuery", true);
 
 mongoose.connection.on("disconnected", () => {
     console.log("MONGODB DISCONNECTED");
