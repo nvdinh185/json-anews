@@ -4,7 +4,7 @@ async function getData() {
     const ulElement = $("#list-news");
 
     try {
-        var listNews = await axios.get('http://localhost:3000/anews');
+        var listNews = await axios.get('http://localhost:3000/news');
         listNews = listNews.data;
 
         listNews.forEach(function (news) {
