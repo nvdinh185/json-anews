@@ -43,7 +43,7 @@ class NewsController {
     }
 
     // [GET] /news/newsbyid
-    async getListNewsById(req, res) {
+    async getNewsById(req, res) {
         var id = req.query.id;
         try {
             var db = new sqlite3.Database(dbFile);
