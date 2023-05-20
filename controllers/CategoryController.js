@@ -8,13 +8,13 @@ class CategoryController {
         try {
             var db = new sqlite3.Database(dbFile);
             db.serialize();
-            const listNews = await new Promise((resolve, reject) => {
+            const listCats = await new Promise((resolve, reject) => {
                 db.all(`SELECT * FROM category`, (err, row) => {
                     if (err) reject(err);
                     resolve(row);
                 })
             })
-            res.status(200).json(listNews);
+            res.status(200).json(listCats);
         } catch (err) {
             res.status(500).json(err);
         } finally {
@@ -28,13 +28,13 @@ class CategoryController {
         try {
             var db = new sqlite3.Database(dbFile);
             db.serialize();
-            const news = await new Promise((resolve, reject) => {
+            const category = await new Promise((resolve, reject) => {
                 db.each(`SELECT * FROM category WHERE id = ${id}`, (err, row) => {
                     if (err) reject(err);
                     resolve(row);
                 })
             })
-            res.status(200).json(news);
+            res.status(200).json(category);
         } catch (err) {
             res.status(500).json(err);
         } finally {

@@ -28,13 +28,13 @@ class NewsController {
         try {
             var db = new sqlite3.Database(dbFile);
             db.serialize();
-            const listNews = await new Promise((resolve, reject) => {
+            const listNewsByCat = await new Promise((resolve, reject) => {
                 db.all(`SELECT * FROM news WHERE cat_id = ${catId}`, (err, row) => {
                     if (err) reject(err);
                     resolve(row);
                 })
             })
-            res.status(200).json(listNews);
+            res.status(200).json(listNewsByCat);
         } catch (err) {
             res.status(500).json(err);
         } finally {
