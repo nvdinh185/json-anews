@@ -2,21 +2,15 @@ const express = require('express');
 const app = express();
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
-const path = require('path');
 
 dotenv.config();
 
 const route = require('./routes');
 
-const publicPath = path.join(__dirname, "client");
-app.use(express.static(publicPath));
+app.use(express.static(__dirname + "/client"));
 
 // Router init
 route(app);
-
-app.get('/', function (req, res) {
-    res.sendFile(path.join(publicPath, 'index.html'));
-});
 
 const connect = async () => {
     try {

@@ -15,7 +15,7 @@ class CategoryController {
     }
 
     // [GET] /cat/catbyid
-    async getCatDetail(req, res) {
+    async getCatById(req, res) {
         var id = req.query.id;
         try {
             const catById = await Category.findOne({ id });
