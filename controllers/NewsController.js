@@ -7,9 +7,9 @@ class NewsController {
     async getListNews(req, res) {
         try {
             const listNews = await News.find();
-            res.status(200).json(listNews);
+            res.status(200).send(listNews);
         } catch (err) {
-            res.status(500).json(err);
+            res.status(500).send(err);
         } finally {
             // db.close();
         }
@@ -20,9 +20,9 @@ class NewsController {
         var catId = req.query.cid;
         try {
             const listNewsByCat = await News.find({ cat_id: catId });
-            res.status(200).json(listNewsByCat);
+            res.status(200).send(listNewsByCat);
         } catch (err) {
-            res.status(500).json(err);
+            res.status(500).send(err);
         } finally {
             // db.close();
         }
@@ -33,9 +33,9 @@ class NewsController {
         var id = req.query.id;
         try {
             const newsById = await News.findOne({ id });
-            res.status(200).json(newsById);
+            res.status(200).send(newsById);
         } catch (err) {
-            res.status(500).json(err);
+            res.status(500).send(err);
         } finally {
             // db.close();
         }

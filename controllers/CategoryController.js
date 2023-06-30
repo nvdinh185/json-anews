@@ -6,9 +6,9 @@ class CategoryController {
     async getListCats(req, res) {
         try {
             const listCats = await Category.find();
-            res.status(200).json(listCats);
+            res.status(200).send(listCats);
         } catch (err) {
-            res.status(500).json(err);
+            res.status(500).send(err);
         } finally {
             // db.close();
         }
@@ -19,9 +19,9 @@ class CategoryController {
         var id = req.query.id;
         try {
             const catById = await Category.findOne({ id });
-            res.status(200).json(catById);
+            res.status(200).send(catById);
         } catch (err) {
-            res.status(500).json(err);
+            res.status(500).send(err);
         } finally {
             // db.close();
         }
