@@ -14,9 +14,9 @@ class NewsController {
                     resolve(row);
                 })
             })
-            res.status(200).json(listNews);
+            res.status(200).send(listNews);
         } catch (err) {
-            res.status(500).json(err);
+            res.status(500).send(err);
         } finally {
             db.close();
         }
@@ -34,9 +34,9 @@ class NewsController {
                     resolve(row);
                 })
             })
-            res.status(200).json(listNewsByCat);
+            res.status(200).send(listNewsByCat);
         } catch (err) {
-            res.status(500).json(err);
+            res.status(500).send(err);
         } finally {
             db.close();
         }
@@ -54,9 +54,9 @@ class NewsController {
                     resolve(row);
                 })
             })
-            res.status(200).json(news);
+            res.status(200).send(news);
         } catch (err) {
-            res.status(500).json(err);
+            res.status(500).send(err);
         } finally {
             db.close();
         }

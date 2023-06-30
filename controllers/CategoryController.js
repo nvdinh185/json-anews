@@ -14,9 +14,9 @@ class CategoryController {
                     resolve(row);
                 })
             })
-            res.status(200).json(listCats);
+            res.status(200).send(listCats);
         } catch (err) {
-            res.status(500).json(err);
+            res.status(500).send(err);
         } finally {
             db.close();
         }
@@ -34,9 +34,9 @@ class CategoryController {
                     resolve(row);
                 })
             })
-            res.status(200).json(category);
+            res.status(200).send(category);
         } catch (err) {
-            res.status(500).json(err);
+            res.status(500).send(err);
         } finally {
             db.close();
         }
