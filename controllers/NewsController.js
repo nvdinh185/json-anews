@@ -51,7 +51,7 @@ class NewsController {
             });
         }
         try {
-            const newBook = await Contact.create({
+            const newContact = await Contact.create({
                 id: generateUuid(),
                 name,
                 phone,
@@ -60,7 +60,7 @@ class NewsController {
                 content,
                 picture: file
             });
-            res.status(200).send(newBook);
+            res.status(200).send(newContact);
         } catch (err) {
             res.status(500).send(err);
         } finally {
