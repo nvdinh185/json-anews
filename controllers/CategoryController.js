@@ -1,15 +1,21 @@
-const sqlite3 = require('sqlite3').verbose();
-const dbFile = './database/news.db';
+const mysql = require('mysql');
+
+const configDB = {
+    host: "localhost",
+    user: "root",
+    password: "123456",
+    database: "anews"
+};
 
 class CategoryController {
 
     // [GET] /cat
     async getListCats(req, res) {
         try {
-            var db = new sqlite3.Database(dbFile);
-            db.serialize();
+            var conn = mysql.createConnection(configDB);
+
             const listCats = await new Promise((resolve, reject) => {
-                db.all(`SELECT * FROM category`, (err, row) => {
+                conn.query(`SELECT * FROM category`, (err, row) => {
                     if (err) reject(err);
                     resolve(row);
                 })
@@ -18,7 +24,7 @@ class CategoryController {
         } catch (err) {
             res.status(500).send(err);
         } finally {
-            db.close();
+            conn.end();
         }
     }
 
@@ -26,19 +32,19 @@ class CategoryController {
     async getCatById(req, res) {
         var id = req.query.id;
         try {
-            var db = new sqlite3.Database(dbFile);
-            db.serialize();
+            var conn = mysql.createConnection(configDB);
+
             const category = await new Promise((resolve, reject) => {
-                db.each(`SELECT * FROM category WHERE id = ${id}`, (err, row) => {
+                conn.query(`SELECT * FROM category WHERE id = ${id}`, (err, row) => {
                     if (err) reject(err);
                     resolve(row);
                 })
             })
-            res.status(200).send(category);
+            res.status(200).send(category[0]);
         } catch (err) {
             res.status(500).send(err);
         } finally {
-            db.close();
+            conn.end();
         }
     }
 }

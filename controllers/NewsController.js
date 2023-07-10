@@ -1,15 +1,21 @@
-const sqlite3 = require('sqlite3').verbose();
-const dbFile = './database/news.db';
+const mysql = require('mysql');
+
+const configDB = {
+    host: "localhost",
+    user: "root",
+    password: "123456",
+    database: "anews"
+};
 
 class NewsController {
 
     // [GET] /news
     async getListNews(req, res) {
         try {
-            var db = new sqlite3.Database(dbFile);
-            db.serialize();
+            var conn = mysql.createConnection(configDB);
+
             const listNews = await new Promise((resolve, reject) => {
-                db.all(`SELECT * FROM news`, (err, row) => {
+                conn.query(`SELECT * FROM news`, (err, row) => {
                     if (err) reject(err);
                     resolve(row);
                 })
@@ -18,7 +24,7 @@ class NewsController {
         } catch (err) {
             res.status(500).send(err);
         } finally {
-            db.close();
+            conn.end();
         }
     }
 
@@ -26,10 +32,10 @@ class NewsController {
     async getListNewsByCat(req, res) {
         var catId = req.query.cid;
         try {
-            var db = new sqlite3.Database(dbFile);
-            db.serialize();
+            var conn = mysql.createConnection(configDB);
+
             const listNewsByCat = await new Promise((resolve, reject) => {
-                db.all(`SELECT * FROM news WHERE cat_id = ${catId}`, (err, row) => {
+                conn.query(`SELECT * FROM news WHERE cat_id = ${catId}`, (err, row) => {
                     if (err) reject(err);
                     resolve(row);
                 })
@@ -38,7 +44,7 @@ class NewsController {
         } catch (err) {
             res.status(500).send(err);
         } finally {
-            db.close();
+            conn.end();
         }
     }
 
@@ -46,19 +52,19 @@ class NewsController {
     async getNewsById(req, res) {
         var id = req.query.id;
         try {
-            var db = new sqlite3.Database(dbFile);
-            db.serialize();
+            var conn = mysql.createConnection(configDB);
+
             const news = await new Promise((resolve, reject) => {
-                db.each(`SELECT * FROM news WHERE id = ${id}`, (err, row) => {
+                conn.query(`SELECT * FROM news WHERE id = ${id}`, (err, row) => {
                     if (err) reject(err);
                     resolve(row);
                 })
             })
-            res.status(200).send(news);
+            res.status(200).send(news[0]);
         } catch (err) {
             res.status(500).send(err);
         } finally {
-            db.close();
+            conn.end();
         }
     }
 
@@ -72,22 +78,23 @@ class NewsController {
             });
         }
         try {
-            var db = new sqlite3.Database(dbFile);
-            db.serialize();
+            var conn = mysql.createConnection(configDB);
+
             await new Promise((resolve, reject) => {
-                db.run(`INSERT INTO contact (id, name, phone, web, gender, picture, content) VALUES (?, ?, ?, ?, ?, ?, ?)`,
-                    [generateUuid(), name, phone, web, gender, file, content], function (err) {
+                conn.query(`INSERT INTO contact (name, phone, web, gender, picture, content) VALUES (?, ?, ?, ?, ?, ?)`,
+                    [name, phone, web, gender, file, content], function (err, result) {
                         if (err) {
-                            reject(new Error(err.message));
+                            reject(err);
                         }
-                        resolve(this.changes);
+                        resolve(result);
                     });
             })
             res.sendStatus(200);
         } catch (err) {
+            console.log(err);
             res.sendStatus(500);
         } finally {
-            db.close();
+            conn.end();
         }
     }
 }
