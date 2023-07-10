@@ -3,3 +3,7 @@ node_modules/
 
 # npm config file
 package-lock.json
+
+database/
+
+uploads/
