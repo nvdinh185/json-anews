@@ -6,10 +6,10 @@ async function getData() {
 
         listCat = listCat.data;
 
-        listCat.forEach(function (news) {
+        listCat.forEach(function (cat) {
             const liElement = $('<li></li>');
             liElement.html(`
-                <a href="danhmuc.html?cid=${news.id}">${news.name}</a>
+                <a href="danhmuc.html?cid=${cat.id}">${cat.name}</a>
             `);
 
             listCatElement.append(liElement);

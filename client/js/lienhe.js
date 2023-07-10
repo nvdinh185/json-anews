@@ -13,13 +13,21 @@ form.on("submit", async function (e) {
         }
     }
 
-    var results = await axios({
-        method: "POST",
-        url: "http://localhost:3000/news/contact",
-        data: formData,
-        headers: { "Content-Type": "multipart/form-data" },
-    });
+    var msgElement = $('#msg');
+    try {
+        var results = await axios({
+            method: "POST",
+            url: "http://localhost:3000/news/contact",
+            data: formData,
+            headers: { "Content-Type": "multipart/form-data" },
+        });
 
-    //handle success
-    console.log('results: ', results);
+        //handle success
+        console.log('results: ', results);
+        msgElement.replaceWith(`<p style="background-color: yellow; color: green; font-style: italic;">Thêm liên hệ thành công!</p>`);
+
+    } catch (error) {
+        console.log(error);
+        msgElement.replaceWith(`<p style="background-color: yellow; color: red; font-style: italic;">Xảy ra lỗi ${error}</p>`);
+    }
 })
