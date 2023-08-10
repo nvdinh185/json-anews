@@ -3,7 +3,6 @@ async function getData() {
     try {
 
         var listCat = await axios.get('http://localhost:3000/cat');
-
         listCat = listCat.data;
 
         listCat.forEach(function (news) {
@@ -17,7 +16,7 @@ async function getData() {
         })
     } catch (error) {
         console.log(error);
-        listCatElement.append(`<li style="color: red; font-style: italic;">Xảy ra lỗi ${error}</li>`);
+        listCatElement.html(`<li style="color: red; font-style: italic;">Xảy ra lỗi ${error}</li>`);
     }
 }
 

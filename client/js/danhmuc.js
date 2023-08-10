@@ -32,7 +32,6 @@ async function getData() {
         })
 
         var catById = await axios.get(`http://localhost:3000/cat/catbyid?id=${cId}`);
-
         catById = catById.data;
 
         var catName = catById.name;
@@ -42,7 +41,7 @@ async function getData() {
         h3.text('Tin tức :: ' + catName);
     } catch (err) {
         console.log('Lỗi ' + err);
-        ulElement.append(`<p style='color: red; font-style: italic;'>Xảy ra lỗi khi lấy dữ liệu!<p/>`);
+        ulElement.html(`<li style='color: red; font-style: italic;'>Xảy ra lỗi khi lấy dữ liệu!</li>`);
     }
 }
 

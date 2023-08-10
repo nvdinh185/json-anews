@@ -28,13 +28,13 @@ class CategoryController {
         try {
             var db = new sqlite3.Database(dbFile);
             db.serialize();
-            const category = await new Promise((resolve, reject) => {
+            const catById = await new Promise((resolve, reject) => {
                 db.each(`SELECT * FROM category WHERE id = ${id}`, (err, row) => {
                     if (err) reject(err);
                     resolve(row);
                 })
             })
-            res.status(200).send(category);
+            res.status(200).send(catById);
         } catch (err) {
             res.status(500).send(err);
         } finally {

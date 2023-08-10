@@ -15,7 +15,6 @@ async function getData() {
     try {
         // var newsById = await axios.get(`http://localhost:3000/anews/${dId}`);
         var newsById = await axios.get(`http://localhost:3000/news/newsbyid?id=${dId}`);
-
         newsById = newsById.data;
 
         detailElement.html(`
@@ -26,7 +25,7 @@ async function getData() {
         `);
     } catch (err) {
         console.log('Lỗi ' + err);
-        detailElement.append(`<p style='color: red; font-style: italic;'>Xảy ra lỗi khi lấy dữ liệu!<p/>`);
+        detailElement.html(`<p style='color: red; font-style: italic;'>Xảy ra lỗi khi lấy dữ liệu!</p>`);
     }
 }
 

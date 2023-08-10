@@ -83,9 +83,9 @@ class NewsController {
                         resolve(this.changes);
                     });
             })
-            res.sendStatus(200);
+            res.status(200).send('OK');
         } catch (err) {
-            res.sendStatus(500);
+            res.status(500).send('NOK');
         } finally {
             db.close();
         }
