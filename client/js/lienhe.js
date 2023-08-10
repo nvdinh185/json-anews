@@ -8,7 +8,7 @@ form.on("submit", async function (e) {
     for (const el of e.target) {
         if (el.files) {
             formData.append("file", el.files[0]);
-        } else {
+        } else if (el.name) {
             formData.append(el.name, el.value);
         }
     }

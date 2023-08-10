@@ -34,13 +34,13 @@ class CategoryController {
         try {
             var conn = mysql.createConnection(configDB);
 
-            const category = await new Promise((resolve, reject) => {
+            const catById = await new Promise((resolve, reject) => {
                 conn.query(`SELECT * FROM category WHERE id = ${id}`, (err, row) => {
                     if (err) reject(err);
                     resolve(row);
                 })
             })
-            res.status(200).send(category[0]);
+            res.status(200).send(catById[0]);
         } catch (err) {
             res.status(500).send(err);
         } finally {

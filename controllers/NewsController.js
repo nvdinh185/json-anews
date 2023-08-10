@@ -54,13 +54,13 @@ class NewsController {
         try {
             var conn = mysql.createConnection(configDB);
 
-            const news = await new Promise((resolve, reject) => {
+            const newsById = await new Promise((resolve, reject) => {
                 conn.query(`SELECT * FROM news WHERE id = ${id}`, (err, row) => {
                     if (err) reject(err);
                     resolve(row);
                 })
             })
-            res.status(200).send(news[0]);
+            res.status(200).send(newsById[0]);
         } catch (err) {
             res.status(500).send(err);
         } finally {
@@ -71,12 +71,7 @@ class NewsController {
     // [POST] /news/contact
     async postContact(req, res) {
         const { name, phone, web, gender, content, file } = req.form_data;
-        function generateUuid() {
-            return 'xxxx-xxxx-xxx-xxxx'.replace(/[x]/g, function (c) {
-                var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
-                return v.toString(16);
-            });
-        }
+
         try {
             var conn = mysql.createConnection(configDB);
 
@@ -89,10 +84,10 @@ class NewsController {
                         resolve(result);
                     });
             })
-            res.sendStatus(200);
+            res.status(200).send('OK');
         } catch (err) {
             console.log(err);
-            res.sendStatus(500);
+            res.status(500).send('NOK');
         } finally {
             conn.end();
         }
