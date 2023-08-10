@@ -24,7 +24,7 @@ async function getData() {
         })
     } catch (err) {
         console.log('Lỗi ' + err);
-        ulElement.append(`<p style='color: red; font-style: italic;'>Xảy ra lỗi khi lấy dữ liệu!</p>`);
+        ulElement.append(`<li style='color: red; font-style: italic;'>Xảy ra lỗi khi lấy dữ liệu!</li>`);
     }
 }
 
