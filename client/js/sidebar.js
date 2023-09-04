@@ -17,7 +17,7 @@ async function getData() {
         })
     } catch (error) {
         console.log(error);
-        listCatElement.append(`<li style="color: red; font-style: italic;">Xảy ra lỗi ${error}</li>`);
+        listCatElement.append(`<li style="color: red; font-style: italic;">Xảy ra lỗi khi lấy dữ liệu!</li>`);
     }
 }
 
