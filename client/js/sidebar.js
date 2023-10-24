@@ -3,7 +3,6 @@ async function getData() {
     try {
 
         var listCat = await axios.get('http://localhost:3000/cat');
-
         listCat = listCat.data;
 
         listCat.forEach(function (cat) {

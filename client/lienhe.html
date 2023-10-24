@@ -43,20 +43,20 @@
 						<p>Vui lòng điền đầy đủ các thông tin liên hệ sau: </p>
 						<div class="row">
 							<label>Họ tên: </label>
-							<input type="text" name="name" value="" />
+							<input type="text" name="name" value="" required />
 						</div>
 						<div class="row">
 							<label>Số điện thoại: </label>
-							<input type="text" name="phone" value="" />
+							<input type="text" name="phone" value="" required />
 						</div>
 						<div class="row">
 							<label>Website: </label>
-							<input type="text" name="web" value="" />
+							<input type="text" name="web" value="" required />
 						</div>
 						<div class="row">
 							<label>Giới tính: </label>
-							<select name="gender">
-								<option value="-1">-- Chọn giới tính --</option>
+							<select name="gender" required>
+								<option value="">-- Chọn giới tính --</option>
 								<option value="1">Nam</option>
 								<option value="0">Nữ</option>
 							</select>
@@ -67,7 +67,7 @@
 						</div>
 						<div class="row">
 							<label>Nội dung: </label>
-							<textarea name="content"></textarea>
+							<textarea name="content" required></textarea>
 						</div>
 						<div class="row">
 							<input type="submit" name="submit" value="Gửi liên hệ" />

@@ -15,7 +15,7 @@ class CategoryController {
             var conn = mysql.createConnection(configDB);
 
             const listCats = await new Promise((resolve, reject) => {
-                conn.query(`SELECT * FROM category`, (err, row) => {
+                conn.query(`SELECT * FROM categories`, (err, row) => {
                     if (err) reject(err);
                     resolve(row);
                 })
@@ -35,7 +35,7 @@ class CategoryController {
             var conn = mysql.createConnection(configDB);
 
             const catById = await new Promise((resolve, reject) => {
-                conn.query(`SELECT * FROM category WHERE id = ${id}`, (err, row) => {
+                conn.query(`SELECT * FROM categories WHERE id = ${id}`, (err, row) => {
                     if (err) reject(err);
                     resolve(row);
                 })

@@ -32,7 +32,6 @@ async function getData() {
         })
 
         var catById = await axios.get(`http://localhost:3000/cat/catbyid?id=${cId}`);
-
         catById = catById.data;
 
         var catName = catById.name;
