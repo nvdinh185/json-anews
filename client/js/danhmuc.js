@@ -35,13 +35,10 @@ async function getData() {
 
         })
 
-        var listCat = await axios.get('http://localhost:3000/acategories');
+        var catById = await axios.get(`http://localhost:3000/acategories/${cId}`);
+        catById = catById.data;
 
-        listCat = listCat.data;
-
-        var catName = listCat.find(function (cat) {
-            return cat.id === cId;
-        }).name;
+        var catName = catById.name;
 
         var h3 = $('#cat-name');
 
