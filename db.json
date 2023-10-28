@@ -1,5 +1,5 @@
 {
-  "anews": [
+  "news": [
     {
       "id": "1",
       "description": "Trung Quốc điều thêm 17 tàu đến khu vực giàn khoan",
@@ -31,7 +31,7 @@
       "catId": "1"
     }
   ],
-  "acategories": [
+  "cat": [
     {
       "id": "1",
       "name": "Thời sự"

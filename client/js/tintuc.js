@@ -4,7 +4,7 @@ async function getData() {
     const ulElement = $("#list-news");
 
     try {
-        var listNews = await axios.get('http://localhost:3000/anews');
+        var listNews = await axios.get('http://localhost:3000/news');
         listNews = listNews.data;
 
         listNews.forEach(function (news) {
@@ -24,7 +24,7 @@ async function getData() {
         })
     } catch (err) {
         console.log('Lỗi ' + err);
-        ulElement.append(`<li style='color: red; font-style: italic;'>Xảy ra lỗi khi lấy dữ liệu!</li>`);
+        ulElement.append(`<p style='color: red; font-style: italic;'>Xảy ra lỗi khi lấy dữ liệu!</p>`);
     }
 }
 
