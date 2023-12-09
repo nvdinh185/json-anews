@@ -28,6 +28,6 @@ form.on("submit", async function (e) {
 
     } catch (error) {
         console.log(error);
-        msgElement.replaceWith(`<p style="background-color: yellow; color: red; font-style: italic;">Xảy ra lỗi ${error}</p>`);
+        msgElement.replaceWith(`<p style="background-color: yellow; color: red; font-style: italic;">Xảy ra lỗi khi thêm liên hệ!</p>`);
     }
 })
